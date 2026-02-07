@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class demoController {
     // Serve the index.html page
-    @GetMapping("/")
+    @GetMapping("/index")
     public String home() {
         return "index"; // Refers to src/main/resources/templates/index.html
     }
@@ -13,4 +13,9 @@ public class demoController {
     public String registration() {
         return "registration";
     }
+    @GetMapping("/contactus")
+    public String contactus() {
+        return "contactus";
+    }
+
 }
