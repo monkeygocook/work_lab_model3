@@ -65,6 +65,16 @@ public class WebsiteController {
 
         // Redirect to the appropriate page based on the role
         if (role.equals("ROLE_ADMIN")) {
+            
+            DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+
+            model.addAttribute(
+                "currentDateTime",
+                LocalDateTime.now().format(formatter)
+            );
+
+
             return "admin"; // Return the admin.html template
         } else {
             return "viewer"; // Return the viewer.html template
