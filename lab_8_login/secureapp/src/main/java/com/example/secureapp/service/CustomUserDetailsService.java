@@ -34,14 +34,35 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .build();
     }
 
-    public void registerUser(String username, String password, String role)
-            throws Exception {
+    public void registerUser(
+            String username,
+            String password,
+            String role,
+            String firstName,
+            String lastName,
+            String email
+    ) throws Exception {
 
         if (users.containsKey(username)) {
             throw new Exception("User already exists");
-        } else {
-            String encodedPassword = passwordEncoder.encode(password);
-            users.put(username, new User(username, encodedPassword, role));
         }
+
+        String encodedPassword = passwordEncoder.encode(password);
+
+        users.put(
+                username,
+                new User(
+                        username,
+                        encodedPassword,
+                        role,
+                        firstName,
+                        lastName,
+                        email
+                )
+        );
+    }
+
+    public User getUser(String username) {
+        return users.get(username);
     }
 }
