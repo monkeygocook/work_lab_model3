@@ -96,12 +96,15 @@ public class WebsiteController {
     public String registerUser(
             @RequestParam String username, // Username from the form
             @RequestParam String password, // Password from the form
-            @RequestParam String role      // Role from the form
+            @RequestParam String role,      // Role from the form
+            @RequestParam String firstName,
+            @RequestParam String lastName,
+            @RequestParam String email
     ) {
 
         // Register the user by storing their details in the HashMap
         try {
-            userDetailsService.registerUser(username, password, role);
+            userDetailsService.registerUser(username, password, role,firstName,lastName,email);
         } catch (Exception userExistsAlready) {
             // Redirect to the /register endpoint
             return "redirect:/register?error";
