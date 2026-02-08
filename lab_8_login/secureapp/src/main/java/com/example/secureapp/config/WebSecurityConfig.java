@@ -22,16 +22,19 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+            throws Exception {
+
         http
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/register", "/login").permitAll()
-                .requestMatchers("/greet").authenticated()
-                .anyRequest().permitAll()
+                .requestMatchers("/register", "/login").permitAll() // Allow access to registration and login pages
+                .requestMatchers("/admin").hasRole("ADMIN") // Restrict /admin to users with the ADMIN role
+                .requestMatchers("/viewer").hasRole("STAFF") // Restrict /viewer to users with the STAFF role
+                .anyRequest().authenticated() // Require authentication for all other endpoints
             )
             .formLogin(form -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/greet", true)
+                .loginPage("/login") // Custom login page
+                .defaultSuccessUrl("/home", true) // Redirect to /greet after successful login
                 .permitAll()
             )
             .logout(logout -> logout
@@ -42,13 +45,15 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+    public AuthenticationManager authenticationManager(HttpSecurity http)
+            throws Exception {
+
         AuthenticationManagerBuilder authenticationManagerBuilder =
-            http.getSharedObject(AuthenticationManagerBuilder.class);
+                http.getSharedObject(AuthenticationManagerBuilder.class);
 
         authenticationManagerBuilder
-            .userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder());
+                .userDetailsService(userDetailsService) // Use your custom UserDetailsService
+                .passwordEncoder(passwordEncoder()); // Use the password encoder
 
         return authenticationManagerBuilder.build();
     }
