@@ -1,6 +1,4 @@
 {
-    "java.project.sourcePaths": [
-        "lab_7_secureapp/secureapp/src/main/java"
-    ],
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
