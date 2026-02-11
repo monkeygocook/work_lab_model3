@@ -1,4 +1,9 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.sourcePaths": [
+        "unit_test/football/src/main/java/com/packt/football",
+        "unit_test/football/src/main",
+        "unit_test/football"
+    ]
 }
