@@ -1,4 +1,4 @@
-package com.app.webdemo;
+package com.app.webdemo.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +20,19 @@ class IntegrationWebdemoTest {
         mvc.perform(get("/"))
            .andExpect(status().isOk())
            .andExpect(view().name("index"));
+    }
+
+    @Test
+    void registration_shouldRenderRegistration() throws Exception {
+        mvc.perform(get("/registration"))
+           .andExpect(status().isOk())
+           .andExpect(view().name("registration"));
+    }
+
+    @Test
+    void contactus_shouldRenderContactus() throws Exception {
+        mvc.perform(get("/contactus"))
+           .andExpect(status().isOk())
+           .andExpect(view().name("contactus"));
     }
 }
