@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.example.mvcwebdemoas.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 @Controller
-public class demoController {
+public class MvcwebdemoController {
     // Serve the index.html page
     @GetMapping("/index")
     public String home() {
